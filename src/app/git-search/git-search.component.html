@@ -1,7 +1,18 @@
-<input name="query" placeholder="Enter Search Here" [(ngModel)]="searchQuery" />
-<button (click)="gitSearch()">Submit</button>
+<h3>{{title}} - {{displayQuery}}</h3>
 
-<div *ngIf="searchResults.total_count > 0">
+<input name="query" placeholder="Enter Search Here" [(ngModel)]="searchQuery" />
+<button (click)="sendQuery()">Submit</button>
+
+<br>
+<br>
+
+<a [routerLink]="'/'" routerLinkActive="active">
+  <button>Back home</button>
+</a>
+
+<br>
+
+<div *ngIf="searchResults; else elseBlock">
   <h3 class="total">Total Results: {{searchResults.total_count}}</h3>
   <ul class="list">
     <li [ngStyle]="{'background-color' : (i % 2 === 0) ? 'silver' : 'white'}" class="list_item" *ngFor="let result of searchResults.items; index as i;">
@@ -15,10 +26,6 @@
       <p> Created On: {{result.created_at | date:'fullDate'}} </p>
     </li>
   </ul>
-</div>
-
-<div *ngIf="searchResults.total_count === 0; else elseBlock">
-        No results were found doggy! 
 </div>
 <ng-template #elseBlock>Loading...</ng-template>
 
