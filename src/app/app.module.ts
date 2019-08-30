@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'search/:query',
+    path: 'search/:queryText',
     component: GitSearchComponent,
     data: { title: 'Git Search'}
   },
@@ -43,7 +43,8 @@ const appRoutes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)  
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule
   ],
   providers: [GitSearchService, GitSearchUsersService],
   bootstrap: [AppComponent]
